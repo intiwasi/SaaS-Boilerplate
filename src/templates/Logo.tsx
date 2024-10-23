@@ -1,23 +1,37 @@
-import { AppConfig } from '@/utils/AppConfig';
+import { AppConfig } from '../utils/AppConfig';
 
 export const Logo = (props: {
   isTextHidden?: boolean;
 }) => (
   <div className="flex items-center text-xl font-semibold">
     <svg
-      className="mr-1 size-8 stroke-current stroke-2"
+      className="mr-2 size-8 stroke-blue-600 stroke-2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M0 0h24v24H0z" stroke="none" />
-      <rect x="3" y="12" width="6" height="8" rx="1" />
-      <rect x="9" y="8" width="6" height="12" rx="1" />
-      <rect x="15" y="4" width="6" height="16" rx="1" />
-      <path d="M4 20h14" />
+      {/* Neural network icon */}
+      <circle cx="6" cy="6" r="2" />
+      <circle cx="18" cy="6" r="2" />
+      <circle cx="12" cy="12" r="2" />
+      <circle cx="6" cy="18" r="2" />
+      <circle cx="18" cy="18" r="2" />
+      <line x1="6" y1="8" x2="6" y2="16" />
+      <line x1="18" y1="8" x2="18" y2="16" />
+      <line x1="8" y1="6" x2="16" y2="6" />
+      <line x1="8" y1="18" x2="16" y2="18" />
+      <line x1="8" y1="12" x2="16" y2="12" />
+      <line x1="8" y1="6" x2="12" y2="12" />
+      <line x1="16" y1="6" x2="12" y2="12" />
+      <line x1="8" y1="18" x2="12" y2="12" />
+      <line x1="16" y1="18" x2="12" y2="12" />
     </svg>
-    {!props.isTextHidden && AppConfig.name}
+    {!props.isTextHidden && (
+      <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text font-bold text-transparent">
+        {AppConfig.name}
+      </span>
+    )}
   </div>
 );

@@ -1,8 +1,32 @@
 import { useTranslations } from 'next-intl';
 
-import { PricingCard } from '@/features/billing/PricingCard';
-import { PricingFeature } from '@/features/billing/PricingFeature';
-import { PricingPlanList } from '@/utils/AppConfig';
+import { PricingPlanList } from '../../utils/AppConfig';
+import { PricingCard } from './PricingCard';
+import { PricingFeature } from './PricingFeature';
+
+const PLAN_FEATURES = {
+  screenshot: [
+    'Screenshot Analysis',
+    'Instant Answers',
+    'Detailed Explanations',
+    'Mobile App Access',
+    '24/7 Support',
+  ],
+  pro: [
+    'Real-time Video Analysis',
+    'Physical Adapter Included',
+    'Webapp Access',
+    'Priority Support',
+    'Advanced Explanations',
+  ],
+  enterprise: [
+    'Custom Integration',
+    'Bulk Licensing',
+    'API Access',
+    'Dedicated Support',
+    'Custom Features',
+  ],
+};
 
 export const PricingInformation = (props: {
   buttonList: Record<string, React.ReactNode>;
@@ -19,31 +43,11 @@ export const PricingInformation = (props: {
           interval={plan.interval}
           button={props.buttonList[plan.id]}
         >
-          <PricingFeature>
-            {t('feature_team_member', {
-              number: plan.features.teamMember,
-            })}
-          </PricingFeature>
-
-          <PricingFeature>
-            {t('feature_website', {
-              number: plan.features.website,
-            })}
-          </PricingFeature>
-
-          <PricingFeature>
-            {t('feature_storage', {
-              number: plan.features.storage,
-            })}
-          </PricingFeature>
-
-          <PricingFeature>
-            {t('feature_transfer', {
-              number: plan.features.transfer,
-            })}
-          </PricingFeature>
-
-          <PricingFeature>{t('feature_email_support')}</PricingFeature>
+          {PLAN_FEATURES[plan.id as keyof typeof PLAN_FEATURES].map((feature, index) => (
+            <PricingFeature key={index}>
+              {feature}
+            </PricingFeature>
+          ))}
         </PricingCard>
       ))}
     </div>

@@ -1,8 +1,15 @@
+import { CameraIcon, LightningBoltIcon, LockClosedIcon, MobileIcon, RocketIcon, UpdateIcon } from '@radix-ui/react-icons';
 import { useTranslations } from 'next-intl';
 
-import { Background } from '@/components/Background';
-import { FeatureCard } from '@/features/landing/FeatureCard';
-import { Section } from '@/features/landing/Section';
+import { Background } from '../components/Background';
+import { FeatureCard } from '../features/landing/FeatureCard';
+import { Section } from '../features/landing/Section';
+
+const FeatureIcon = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex size-12 items-center justify-center rounded-xl bg-blue-100">
+    {children}
+  </div>
+);
 
 export const Features = () => {
   const t = useTranslations('Features');
@@ -17,116 +24,68 @@ export const Features = () => {
         <div className="grid grid-cols-1 gap-x-3 gap-y-8 md:grid-cols-3">
           <FeatureCard
             icon={(
-              <svg
-                className="stroke-primary-foreground stroke-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0h24v24H0z" stroke="none" />
-                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3M12 12l8-4.5M12 12v9M12 12L4 7.5" />
-              </svg>
+              <FeatureIcon>
+                <CameraIcon className="size-6 text-blue-600" />
+              </FeatureIcon>
             )}
             title={t('feature1_title')}
           >
-            {t('feature_description')}
+            Instantly capture and analyze your practice test questions with our advanced AI vision technology.
           </FeatureCard>
 
           <FeatureCard
             icon={(
-              <svg
-                className="stroke-primary-foreground stroke-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0h24v24H0z" stroke="none" />
-                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3M12 12l8-4.5M12 12v9M12 12L4 7.5" />
-              </svg>
+              <FeatureIcon>
+                <LightningBoltIcon className="size-6 text-blue-600" />
+              </FeatureIcon>
             )}
             title={t('feature2_title')}
           >
-            {t('feature_description')}
+            Get immediate answers and explanations delivered straight to your phone while you study.
           </FeatureCard>
 
           <FeatureCard
             icon={(
-              <svg
-                className="stroke-primary-foreground stroke-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0h24v24H0z" stroke="none" />
-                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3M12 12l8-4.5M12 12v9M12 12L4 7.5" />
-              </svg>
+              <FeatureIcon>
+                <MobileIcon className="size-6 text-blue-600" />
+              </FeatureIcon>
             )}
             title={t('feature3_title')}
           >
-            {t('feature_description')}
+            Seamless integration between your computer and mobile device for efficient studying.
           </FeatureCard>
 
           <FeatureCard
             icon={(
-              <svg
-                className="stroke-primary-foreground stroke-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0h24v24H0z" stroke="none" />
-                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3M12 12l8-4.5M12 12v9M12 12L4 7.5" />
-              </svg>
+              <FeatureIcon>
+                <RocketIcon className="size-6 text-blue-600" />
+              </FeatureIcon>
             )}
             title={t('feature4_title')}
           >
-            {t('feature_description')}
+            Smart AI that learns from your practice patterns to provide better explanations over time.
           </FeatureCard>
 
           <FeatureCard
             icon={(
-              <svg
-                className="stroke-primary-foreground stroke-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0h24v24H0z" stroke="none" />
-                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3M12 12l8-4.5M12 12v9M12 12L4 7.5" />
-              </svg>
+              <FeatureIcon>
+                <LockClosedIcon className="size-6 text-blue-600" />
+              </FeatureIcon>
             )}
             title={t('feature5_title')}
           >
-            {t('feature_description')}
+            Secure and private analysis of your practice tests with end-to-end encryption.
           </FeatureCard>
 
           <FeatureCard
             icon={(
-              <svg
-                className="stroke-primary-foreground stroke-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M0 0h24v24H0z" stroke="none" />
-                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3M12 12l8-4.5M12 12v9M12 12L4 7.5" />
-              </svg>
+              <FeatureIcon>
+                <UpdateIcon className="size-6 text-blue-600" />
+              </FeatureIcon>
             )}
             title={t('feature6_title')}
           >
-            {t('feature_description')}
+            Real-time synchronization between devices with our advanced webapp technology.
           </FeatureCard>
         </div>
       </Section>

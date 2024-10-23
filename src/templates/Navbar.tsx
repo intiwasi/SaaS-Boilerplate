@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import { LocaleSwitcher } from '@/components/LocaleSwitcher';
-import { buttonVariants } from '@/components/ui/buttonVariants';
-import { CenteredMenu } from '@/features/landing/CenteredMenu';
-import { Section } from '@/features/landing/Section';
-
+import { LocaleSwitcher } from '../components/LocaleSwitcher';
+import { buttonVariants } from '../components/ui/buttonVariants';
+import { CenteredMenu } from '../features/landing/CenteredMenu';
+import { Section } from '../features/landing/Section';
 import { Logo } from './Logo';
 
 export const Navbar = () => {
@@ -17,7 +16,6 @@ export const Navbar = () => {
         logo={<Logo />}
         rightMenu={(
           <>
-            {/* PRO: Dark mode toggle button */}
             <li>
               <LocaleSwitcher />
             </li>
@@ -25,7 +23,12 @@ export const Navbar = () => {
               <Link href="/sign-in">{t('sign_in')}</Link>
             </li>
             <li>
-              <Link className={buttonVariants()} href="/sign-up">
+              <Link
+                className={buttonVariants({
+                  className: 'bg-blue-600 hover:bg-blue-700 text-white',
+                })}
+                href="/sign-up"
+              >
                 {t('sign_up')}
               </Link>
             </li>
@@ -33,23 +36,23 @@ export const Navbar = () => {
         )}
       >
         <li>
-          <Link href="/sign-up">{t('product')}</Link>
+          <Link href="#features">Features</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('docs')}</Link>
+          <Link href="#pricing">Pricing</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('blog')}</Link>
+          <Link href="#demo">Demo</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('community')}</Link>
+          <Link href="#faq">FAQ</Link>
         </li>
 
         <li>
-          <Link href="/sign-up">{t('company')}</Link>
+          <Link href="/contact">Contact</Link>
         </li>
       </CenteredMenu>
     </Section>

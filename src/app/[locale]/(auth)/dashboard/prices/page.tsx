@@ -1,10 +1,11 @@
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-import { TitleBar } from '@/features/dashboard/TitleBar';
+import { Button } from '@/components/ui/button';
 import { PricingCard } from '@/features/billing/PricingCard';
 import { PricingFeature } from '@/features/billing/PricingFeature';
-import { Button } from '@/components/ui/button';
+import { TitleBar } from '@/features/dashboard/TitleBar';
 import { BILLING_INTERVAL } from '@/types/Subscription';
 
 export async function generateMetadata(props: { params: { locale: string } }) {
@@ -31,7 +32,11 @@ export default function PricesPage() {
           planId="basic"
           price={100}
           interval={BILLING_INTERVAL.MONTH}
-          button={<Button className="mt-6 w-full">Select Basic Plan</Button>}
+          button={(
+            <Link href="/dashboard/prices/free" className="w-full">
+              <Button className="mt-6 w-full">Select Basic Plan</Button>
+            </Link>
+          )}
         >
           <PricingFeature>Basic Hardware Scanning</PricingFeature>
           <PricingFeature>Basic Software Scanning</PricingFeature>
@@ -43,7 +48,11 @@ export default function PricesPage() {
           planId="premium"
           price={400}
           interval={BILLING_INTERVAL.MONTH}
-          button={<Button className="mt-6 w-full">Select Premium Plan</Button>}
+          button={(
+            <Link href="/dashboard/prices/premium" className="w-full">
+              <Button className="mt-6 w-full">Select Premium Plan</Button>
+            </Link>
+          )}
         >
           <PricingFeature>Advanced Hardware Scanning</PricingFeature>
           <PricingFeature>Advanced Software Scanning</PricingFeature>
