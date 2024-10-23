@@ -88,11 +88,35 @@
   },
   "DashboardLayout": {
     "home": "Home",
-    "todos": "Todos"
+    "prices": "Prices",
+    "hardware_scan": "Hardware Scan",
+    "software_scan": "Software Scan"
   },
   "Dashboard": {
     "meta_title": "SaaS Template Dashboard",
     "meta_description": "A free and open-source landing page template for your SaaS business, built with Next.js, TypeScript, Shadcn UI, and Tailwind CSS."
+  },
+  "Prices": {
+    "meta_title": "Pricing Plans",
+    "meta_description": "Choose the perfect plan for your scanning needs",
+    "title_bar": "Pricing Plans",
+    "title_bar_description": "Select the plan that best fits your needs"
+  },
+  "HardwareScan": {
+    "meta_title": "Hardware Scan",
+    "meta_description": "Scan and analyze your hardware components",
+    "title_bar": "Hardware Scan",
+    "title_bar_description": "Analyze your hardware components",
+    "section_title": "Hardware Scanning",
+    "section_description": "Start a new hardware scan to analyze your system components"
+  },
+  "SoftwareScan": {
+    "meta_title": "Software Scan",
+    "meta_description": "Scan and analyze your software components",
+    "title_bar": "Software Scan",
+    "title_bar_description": "Analyze your software components",
+    "section_title": "Software Scanning",
+    "section_description": "Start a new software scan to analyze your installed applications"
   },
   "DashboardIndex": {
     "title_bar": "Dashboard",
