@@ -23,12 +23,12 @@ export default function HardwareScanPage() {
     <>
       <TitleBar title={t('title_bar')} description={t('title_bar_description')} />
 
-      <DashboardSection>
+      <DashboardSection
+        title={t('section_title')}
+        description={t('section_description')}
+      >
         <div className="text-center">
-          <h2 className="text-2xl font-bold">{t('section_title')}</h2>
-          <p className="mt-2 text-muted-foreground">
-            {t('section_description')}
-          </p>
+          <p className="mt-4">Hardware scanning functionality will be implemented here.</p>
         </div>
       </DashboardSection>
     </>
