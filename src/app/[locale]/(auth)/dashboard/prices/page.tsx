@@ -1,24 +1,14 @@
+'use client';
+
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
 
+import { PayPalButton } from '@/components/PayPalButton';
 import { Button } from '@/components/ui/button';
 import { PricingCard } from '@/features/billing/PricingCard';
 import { PricingFeature } from '@/features/billing/PricingFeature';
 import { TitleBar } from '@/features/dashboard/TitleBar';
 import { BILLING_INTERVAL } from '@/types/Subscription';
-
-export async function generateMetadata(props: { params: { locale: string } }) {
-  const t = await getTranslations({
-    locale: props.params.locale,
-    namespace: 'Prices',
-  });
-
-  return {
-    title: t('meta_title'),
-    description: t('meta_description'),
-  };
-}
 
 export default function PricesPage() {
   const t = useTranslations('Prices');
@@ -33,9 +23,14 @@ export default function PricesPage() {
           price={100}
           interval={BILLING_INTERVAL.MONTH}
           button={(
-            <Link href="/dashboard/prices/free" className="w-full">
-              <Button className="mt-6 w-full">Select Basic Plan</Button>
-            </Link>
+            <div className="space-y-4">
+              <Link href="/dashboard/prices/free" className="w-full">
+                <Button className="mt-6 w-full">Select Basic Plan</Button>
+              </Link>
+              <div className="mt-4">
+                <PayPalButton amount="100.00" description="Basic Plan Subscription" />
+              </div>
+            </div>
           )}
         >
           <PricingFeature>Basic Hardware Scanning</PricingFeature>
@@ -49,9 +44,14 @@ export default function PricesPage() {
           price={400}
           interval={BILLING_INTERVAL.MONTH}
           button={(
-            <Link href="/dashboard/prices/premium" className="w-full">
-              <Button className="mt-6 w-full">Select Premium Plan</Button>
-            </Link>
+            <div className="space-y-4">
+              <Link href="/dashboard/prices/premium" className="w-full">
+                <Button className="mt-6 w-full">Select Premium Plan</Button>
+              </Link>
+              <div className="mt-4">
+                <PayPalButton amount="400.00" description="Premium Plan Subscription" />
+              </div>
+            </div>
           )}
         >
           <PricingFeature>Advanced Hardware Scanning</PricingFeature>
