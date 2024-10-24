@@ -1,0 +1,101 @@
+{
+  "Index": {
+    "meta_title": "IntiTutor - Asistente de Exámenes con IA",
+    "meta_description": "Software revolucionario de visión artificial que te ayuda a estudiar de manera más inteligente proporcionando respuestas y explicaciones en tiempo real para tus exámenes de práctica."
+  },
+  "Navbar": {
+    "sign_in": "Iniciar Sesión",
+    "sign_up": "Registrarse",
+    "features": "Características",
+    "pricing": "Precios",
+    "faq": "FAQ",
+    "contact": "Contacto",
+    "demo": "Demo"
+  },
+  "Hero": {
+    "follow_twitter": "Prueba IntiTutor Hoy",
+    "title": "Domina tus Exámenes con <important>Tecnología de Visión Artificial</important>",
+    "description": "Software revolucionario que utiliza visión artificial para analizar tus exámenes de práctica en tiempo real, proporcionando respuestas instantáneas y explicaciones detalladas directamente en tu teléfono mientras estudias.",
+    "primary_button": "Comenzar",
+    "secondary_button": "Ver Demo"
+  },
+  "Features": {
+    "section_subtitle": "Características Avanzadas",
+    "section_title": "Todo lo que necesitas para sobresalir",
+    "section_description": "Nuestra plataforma combina tecnología de IA de vanguardia con características fáciles de usar para mejorar tu experiencia de aprendizaje",
+    "feature1_title": "Tecnología de Visión IA",
+    "feature1_description": "Captura y analiza instantáneamente tus preguntas de exámenes de práctica con nuestra avanzada tecnología de visión artificial.",
+    "feature2_title": "Respuestas Instantáneas",
+    "feature2_description": "Obtén respuestas inmediatas y explicaciones directamente en tu teléfono mientras estudias.",
+    "feature3_title": "Integración Multiplataforma",
+    "feature3_description": "Integración perfecta entre tu computadora y dispositivo móvil para un estudio eficiente.",
+    "feature4_title": "Aprendizaje Adaptativo",
+    "feature4_description": "IA inteligente que aprende de tus patrones de práctica para proporcionar mejores explicaciones con el tiempo.",
+    "feature5_title": "Análisis Seguro",
+    "feature5_description": "Análisis seguro y privado de tus exámenes de práctica con encriptación de extremo a extremo.",
+    "feature6_title": "Sincronización en Tiempo Real",
+    "feature6_description": "Sincronización en tiempo real entre dispositivos con nuestra tecnología web avanzada."
+  },
+  "PricingPlan": {
+    "section_subtitle": "Precios",
+    "section_title": "Elige tu Plan",
+    "section_description": "Selecciona el plan que mejor se adapte a tus necesidades",
+    "screenshot_plan_name": "Análisis IA Básico",
+    "screenshot_plan_description": "Perfecto para sesiones de estudio individuales",
+    "screenshot_features": [
+      "Análisis de Capturas",
+      "Respuestas Instantáneas",
+      "Explicaciones Detalladas",
+      "Acceso a App Móvil",
+      "Soporte 24/7"
+    ],
+    "pro_plan_name": "Análisis IA Premium",
+    "pro_plan_description": "Análisis completo en tiempo real",
+    "pro_features": [
+      "Análisis de Video en Tiempo Real",
+      "Adaptador Físico Incluido",
+      "Acceso a Webapp",
+      "Soporte Prioritario",
+      "Explicaciones Avanzadas"
+    ],
+    "enterprise_plan_name": "Empresarial",
+    "enterprise_plan_description": "Para instituciones educativas",
+    "enterprise_features": [
+      "Integración Personalizada",
+      "Licencias en Volumen",
+      "Acceso API",
+      "Soporte Dedicado",
+      "Características Personalizadas"
+    ],
+    "price_per_month": "/ mes",
+    "start_button": "Comenzar"
+  },
+  "FAQ": {
+    "section_title": "Preguntas Frecuentes",
+    "section_description": "Encuentra respuestas a las preguntas más comunes sobre nuestra plataforma"
+  },
+  "CTA": {
+    "title": "¿Listo para Transformar tus Sesiones de Estudio?",
+    "description": "Únete a miles de estudiantes que ya están estudiando de manera más inteligente con IntiTutor.",
+    "button_text": "Comenzar Ahora"
+  },
+  "Footer": {
+    "product": "Producto",
+    "docs": "Documentación",
+    "blog": "Blog",
+    "community": "Comunidad",
+    "company": "Empresa",
+    "terms_of_service": "Términos de Servicio",
+    "privacy_policy": "Política de Privacidad",
+    "designed_by": "Diseñado por <author></author>."
+  },
+  "Prices": {
+    "meta_title": "Planes de Precios de IntiTutor",
+    "meta_description": "Elige el plan perfecto para tus necesidades de estudio",
+    "title": "Planes de Precios",
+    "description": "Selecciona el plan que mejor se adapte a tu estilo de estudio",
+    "title_bar": "Planes de Precios",
+    "title_bar_description": "Selecciona el plan que mejor se adapte a tu estilo de estudio",
+    "footer_description": "Todos los planes incluyen nuestra tecnología de IA de vanguardia, almacenamiento seguro en la nube y equipo de soporte dedicado. Actualiza o reduce tu plan en cualquier momento según evolucionen tus necesidades."
+  }
+}

@@ -1,4 +1,5 @@
 import { CameraIcon, LightningBoltIcon, LockClosedIcon, MobileIcon, RocketIcon, UpdateIcon } from '@radix-ui/react-icons';
+import { useTranslations } from 'next-intl';
 
 import { FeatureCard } from '../features/landing/FeatureCard';
 import { Section } from '../features/landing/Section';
@@ -10,13 +11,15 @@ const FeatureIcon = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const Features = () => {
+  const t = useTranslations('Features');
+
   return (
     <div className="relative">
       <Section
         id="features"
-        subtitle="Advanced Features"
-        title="Everything you need to excel"
-        description="Our platform combines cutting-edge AI technology with user-friendly features to enhance your learning experience."
+        subtitle={t('section_subtitle')}
+        title={t('section_title')}
+        description={t('section_description')}
         className="relative"
       >
         <div className="relative grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-3">
@@ -26,9 +29,9 @@ export const Features = () => {
                 <CameraIcon className="size-6 text-blue-400 transition-transform group-hover:scale-110" />
               </FeatureIcon>
             )}
-            title="AI Vision Technology"
+            title={t('feature1_title')}
           >
-            Instantly capture and analyze your practice test questions with our advanced AI vision technology.
+            {t('feature1_description')}
           </FeatureCard>
 
           <FeatureCard
@@ -37,9 +40,9 @@ export const Features = () => {
                 <LightningBoltIcon className="size-6 text-purple-400 transition-transform group-hover:scale-110" />
               </FeatureIcon>
             )}
-            title="Instant Answers"
+            title={t('feature2_title')}
           >
-            Get immediate answers and explanations delivered straight to your phone while you study.
+            {t('feature2_description')}
           </FeatureCard>
 
           <FeatureCard
@@ -48,9 +51,9 @@ export const Features = () => {
                 <MobileIcon className="size-6 text-indigo-400 transition-transform group-hover:scale-110" />
               </FeatureIcon>
             )}
-            title="Cross-Device Integration"
+            title={t('feature3_title')}
           >
-            Seamless integration between your computer and mobile device for efficient studying.
+            {t('feature3_description')}
           </FeatureCard>
 
           <FeatureCard
@@ -59,9 +62,9 @@ export const Features = () => {
                 <RocketIcon className="size-6 text-blue-400 transition-transform group-hover:scale-110" />
               </FeatureIcon>
             )}
-            title="Adaptive Learning"
+            title={t('feature4_title')}
           >
-            Smart AI that learns from your practice patterns to provide better explanations over time.
+            {t('feature4_description')}
           </FeatureCard>
 
           <FeatureCard
@@ -70,9 +73,9 @@ export const Features = () => {
                 <LockClosedIcon className="size-6 text-purple-400 transition-transform group-hover:scale-110" />
               </FeatureIcon>
             )}
-            title="Secure Analysis"
+            title={t('feature5_title')}
           >
-            Secure and private analysis of your practice tests with end-to-end encryption.
+            {t('feature5_description')}
           </FeatureCard>
 
           <FeatureCard
@@ -81,9 +84,9 @@ export const Features = () => {
                 <UpdateIcon className="size-6 text-indigo-400 transition-transform group-hover:scale-110" />
               </FeatureIcon>
             )}
-            title="Real-time Sync"
+            title={t('feature6_title')}
           >
-            Real-time synchronization between devices with our advanced webapp technology.
+            {t('feature6_description')}
           </FeatureCard>
         </div>
       </Section>
