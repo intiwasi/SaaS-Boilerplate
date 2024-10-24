@@ -1,11 +1,10 @@
-use client;
+'use client';
 
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { DashboardSection } from '@/features/dashboard/DashboardSection';
 import { TitleBar } from '@/features/dashboard/TitleBar';
-import Link from 'next/link';
-import { use } from 'chai';
 
 export default function SoftwareScanPage() {
   const t = useTranslations('SoftwareScan');
@@ -21,9 +20,9 @@ export default function SoftwareScanPage() {
         <div className="mx-auto max-w-2xl">
           <div className="mb-6 text-center">
             <div className="mb-6 text-xl font-bold text-primary">
-              {/*$400
+              {/* $400
               {' '}
-              <span className="text-sm text-gray-600">/month</span>*/}
+              <span className="text-sm text-gray-600">/month</span> */}
             </div>
           </div>
 
@@ -51,7 +50,7 @@ export default function SoftwareScanPage() {
           </div>
 
           <Link href="/dashboard/hardware-ai">
-            <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
               Go to Hardware AI
             </a>
           </Link>
