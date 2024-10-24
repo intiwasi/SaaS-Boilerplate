@@ -10,9 +10,7 @@ export const FeatureCard = (props: {
     {/* Content */}
     <div className="relative">
       {/* Icon container */}
-      <div className="flex size-12 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 p-2 transition-all duration-300 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-indigo-500/20">
-        {props.icon}
-      </div>
+      {props.icon}
 
       {/* Title */}
       <div className="mt-4 text-lg font-bold text-gray-100 transition-colors duration-300 group-hover:text-white">

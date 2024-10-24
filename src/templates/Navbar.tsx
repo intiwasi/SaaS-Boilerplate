@@ -20,12 +20,12 @@ export const Navbar = () => {
               <LocaleSwitcher />
             </li>
             <li className="ml-1 mr-2.5">
-              <Link href="/sign-in">{t('sign_in')}</Link>
+              <Link href="/sign-in" className="text-gray-300 transition-colors hover:text-white">{t('sign_in')}</Link>
             </li>
             <li>
               <Link
                 className={buttonVariants({
-                  className: 'bg-blue-600 hover:bg-blue-700 text-white',
+                  className: 'bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white hover:opacity-90 transition-opacity',
                 })}
                 href="/sign-up"
               >
@@ -36,23 +36,23 @@ export const Navbar = () => {
         )}
       >
         <li>
-          <Link href="#features">Features</Link>
+          <Link href="#features" className="text-gray-300 transition-colors hover:text-white">Features</Link>
         </li>
 
         <li>
-          <Link href="#pricing">Pricing</Link>
+          <Link href="#pricing" className="text-gray-300 transition-colors hover:text-white">Pricing</Link>
         </li>
 
         <li>
-          <Link href="#demo">Demo</Link>
+          <Link href="#demo" className="text-gray-300 transition-colors hover:text-white">Demo</Link>
         </li>
 
         <li>
-          <Link href="#faq">FAQ</Link>
+          <Link href="#faq" className="text-gray-300 transition-colors hover:text-white">FAQ</Link>
         </li>
 
         <li>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact" className="text-gray-300 transition-colors hover:text-white">Contact</Link>
         </li>
       </CenteredMenu>
     </Section>

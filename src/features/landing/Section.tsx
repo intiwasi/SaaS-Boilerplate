@@ -1,4 +1,4 @@
-import { cn } from '@/utils/Helpers';
+import { cn } from '../../utils/Helpers';
 
 export const Section = (props: {
   children: React.ReactNode;
@@ -6,8 +6,9 @@ export const Section = (props: {
   subtitle?: string;
   description?: string;
   className?: string;
+  id?: string;
 }) => (
-  <div className={cn('px-3 py-16', props.className)}>
+  <div id={props.id} className={cn('px-3 py-16', props.className)}>
     {(props.title || props.subtitle || props.description) && (
       <div className="mx-auto mb-12 max-w-screen-md text-center">
         {props.subtitle && (
@@ -17,7 +18,9 @@ export const Section = (props: {
         )}
 
         {props.title && (
-          <div className="mt-1 text-3xl font-bold">{props.title}</div>
+          <div className="mt-1 bg-gradient-to-r from-gray-200 to-gray-100 bg-clip-text text-3xl font-bold text-transparent">
+            {props.title}
+          </div>
         )}
 
         {props.description && (
