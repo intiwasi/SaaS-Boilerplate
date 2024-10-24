@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Slider } from '@/components/ui/slider';
-import { Switch } from '@/components/ui/switch';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '../../../../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../../components/ui/card';
+import { Label } from '../../../../../components/ui/label';
+import { Slider } from '../../../../../components/ui/slider';
+import { Switch } from '../../../../../components/ui/switch';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../components/ui/tabs';
 
 type AnalysisResult = {
   answer: string;
@@ -15,15 +15,17 @@ type AnalysisResult = {
   confidence: number;
 };
 
-const ANSWER_COLORS = {
-  A: '#FF0000', // Red
-  B: '#00FF00', // Green
-  C: '#0000FF', // Blue
-  D: '#FFFF00', // Yellow
-  E: '#FF00FF', // Purple
+type Answer = 'A' | 'B' | 'C' | 'D' | 'E';
+
+const ANSWER_COLORS: Record<Answer, string> = {
+  A: '#3B82F6', // Blue
+  B: '#8B5CF6', // Purple
+  C: '#6366F1', // Indigo
+  D: '#EC4899', // Pink
+  E: '#F43F5E', // Rose
 };
 
-const VIBRATION_PATTERNS = {
+const VIBRATION_PATTERNS: Record<Answer, number[]> = {
   A: [100],
   B: [100, 100],
   C: [100, 100, 100],
@@ -44,7 +46,6 @@ export default function PracticeQuestionAnalyzer() {
   const [useVibration, setUseVibration] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout>();
 
-  // Initialize video and get available devices
   const startVideo = useCallback(async () => {
     try {
       const devices = await navigator.mediaDevices.enumerateDevices();
@@ -64,7 +65,6 @@ export default function PracticeQuestionAnalyzer() {
     }
   }, [deviceId]);
 
-  // Capture and analyze frame
   const captureAndAnalyze = useCallback(async () => {
     if (videoRef.current && canvasRef.current) {
       const context = canvasRef.current.getContext('2d');
@@ -73,29 +73,10 @@ export default function PracticeQuestionAnalyzer() {
         const imageDataUrl = canvasRef.current.toDataURL('image/jpeg');
 
         try {
-          const response = await fetch('https://api.openrouter.ai/api/v1/chat', {
+          const response = await fetch('/api/analyze', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer YOUR_API_KEY', // Replace with your API key
-              'HTTP-Referer': 'http://localhost:3000', // Replace with your domain
-            },
-            body: JSON.stringify({
-              model: 'openai/gpt-4-vision-preview',
-              messages: [
-                {
-                  role: 'user',
-                  content: [
-                    {
-                      type: 'text',
-                      text: 'Analyze this practice question image. Provide the answer and explanation in JSON format with fields: {"answer": "A-E", "explanation": "detailed explanation", "confidence": 0-100}',
-                    },
-                    { type: 'image_url', image_url: { url: imageDataUrl } },
-                  ],
-                },
-              ],
-              max_tokens: 500,
-            }),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: imageDataUrl }),
           });
 
           if (!response.ok) {
@@ -103,11 +84,10 @@ export default function PracticeQuestionAnalyzer() {
           }
 
           const data = await response.json();
-          const parsedResult = JSON.parse(data.choices[0].message.content);
-          setResult(parsedResult);
+          setResult(data);
 
-          if (useVibration && VIBRATION_PATTERNS[parsedResult.answer]) {
-            navigator.vibrate(VIBRATION_PATTERNS[parsedResult.answer]);
+          if (useVibration && data.answer in VIBRATION_PATTERNS) {
+            navigator.vibrate(VIBRATION_PATTERNS[data.answer as Answer]);
           }
         } catch (error) {
           console.error('Error processing image:', error);
@@ -116,7 +96,6 @@ export default function PracticeQuestionAnalyzer() {
     }
   }, [useVibration]);
 
-  // Toggle continuous capture
   const toggleCapture = useCallback(() => {
     if (isCapturing) {
       if (intervalRef.current) {
@@ -128,191 +107,175 @@ export default function PracticeQuestionAnalyzer() {
     setIsCapturing(!isCapturing);
   }, [isCapturing, captureInterval, captureAndAnalyze]);
 
-  // Handle manual vibration test
   const handleVibration = useCallback((answer: string) => {
-    if (VIBRATION_PATTERNS[answer]) {
-      navigator.vibrate(VIBRATION_PATTERNS[answer]);
+    if (answer in VIBRATION_PATTERNS) {
+      navigator.vibrate(VIBRATION_PATTERNS[answer as Answer]);
     }
   }, []);
 
-  // Cleanup interval on unmount
   useEffect(() => {
+    startVideo();
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, []);
-
-  // Initialize video when component mounts
-  useEffect(() => {
-    startVideo();
   }, [startVideo]);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
-      <div className="container mx-auto space-y-6 p-4">
-        {/* Rest of the JSX remains the same */}
-        {/* Camera Setup Section */}
-        <Card className="border-gray-800 bg-gray-900">
-          <CardHeader>
-            <CardTitle className="text-gray-100">Camera Setup</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <Button
-                  onClick={startVideo}
-                  variant="secondary"
-                  className="bg-gray-800 hover:bg-gray-700"
-                >
-                  Start Camera
-                </Button>
-                <Button
-                  onClick={toggleCapture}
-                  variant={isCapturing ? 'destructive' : 'default'}
-                  className={isCapturing ? 'bg-red-600 hover:bg-red-500' : 'bg-blue-600 hover:bg-blue-500'}
-                >
-                  {isCapturing ? 'Stop Capture' : 'Start Capture'}
-                </Button>
-              </div>
-
-              <select
-                className="w-full rounded border-gray-700 bg-gray-800 p-2 text-gray-100"
-                value={deviceId}
-                onChange={e => setDeviceId(e.target.value)}
+    <div className="space-y-6">
+      {/* Camera Setup Section */}
+      <Card className="ai-card">
+        <CardHeader>
+          <CardTitle className="ai-gradient-text">Camera Setup</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-4">
+              <Button
+                onClick={startVideo}
+                variant="secondary"
+                className="ai-button-outline"
               >
-                {devices.map(device => (
-                  <option key={device.deviceId} value={device.deviceId}>
-                    {device.label || `Camera ${device.deviceId}`}
-                  </option>
-                ))}
-              </select>
-
-              <div className="space-y-2">
-                <Label className="text-gray-300">
-                  Capture Interval:
-                  {captureInterval}
-                  s
-                </Label>
-                <Slider
-                  value={[captureInterval]}
-                  onValueChange={value => setCaptureInterval(value[0])}
-                  min={1}
-                  max={30}
-                  step={1}
-                  className="py-4"
-                />
-              </div>
-
-              <div className="overflow-hidden rounded-lg bg-gray-800">
-                <video ref={videoRef} autoPlay className="w-full" />
-              </div>
-              <canvas ref={canvasRef} className="hidden" width="640" height="480" />
+                Start Camera
+              </Button>
+              <Button
+                onClick={toggleCapture}
+                className={isCapturing ? 'bg-red-600 hover:bg-red-700' : 'ai-button'}
+              >
+                {isCapturing ? 'Stop Capture' : 'Start Capture'}
+              </Button>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Response Section */}
-        <Card className="border-gray-800 bg-gray-900">
-          <CardHeader>
-            <CardTitle className="text-gray-100">Response Area</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Tabs defaultValue="view" className="space-y-4">
-              <TabsList className="bg-gray-800">
-                <TabsTrigger value="view">View Options</TabsTrigger>
-                <TabsTrigger value="settings">Settings</TabsTrigger>
-              </TabsList>
+            <select
+              className="ai-input w-full"
+              value={deviceId}
+              onChange={e => setDeviceId(e.target.value)}
+            >
+              {devices.map(device => (
+                <option key={device.deviceId} value={device.deviceId}>
+                  {device.label || `Camera ${device.deviceId}`}
+                </option>
+              ))}
+            </select>
 
-              <TabsContent value="view">
-                <div className="space-y-4">
-                  <Tabs value={activeResponseMode} onValueChange={(v: 'ctest' | 'color' | 'vibrate') => setActiveResponseMode(v)}>
-                    <TabsList className="bg-gray-800">
-                      <TabsTrigger value="ctest">C-Test Response</TabsTrigger>
-                      <TabsTrigger value="color">Color Mode</TabsTrigger>
-                      <TabsTrigger value="vibrate">Vibration Mode</TabsTrigger>
-                    </TabsList>
+            <div className="space-y-2">
+              <Label className="text-gray-300">
+                Capture Interval:
+                {' '}
+                {captureInterval}
+                s
+              </Label>
+              <Slider
+                value={[captureInterval]}
+                onValueChange={([value]) => setCaptureInterval(value)}
+                min={1}
+                max={30}
+                step={1}
+                className="py-4"
+              />
+            </div>
 
-                    <TabsContent value="ctest" className="mt-4">
-                      {result && (
-                        <div className="space-y-4 rounded-lg bg-gray-800 p-4">
-                          <div className="text-center text-6xl font-bold text-blue-400">
-                            {result.answer}
-                          </div>
-                          <div className="space-y-2 text-gray-300">
-                            <p className="font-semibold">Explanation:</p>
-                            <p>{result.explanation}</p>
-                            <div className="mt-2">
-                              <span className="font-semibold">Confidence:</span>
-                              {' '}
-                              {result.confidence}
-                              %
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </TabsContent>
+            <div className="overflow-hidden rounded-lg border border-gray-800 bg-gray-900">
+              <video
+                ref={videoRef}
+                autoPlay
+                className="w-full"
+                aria-label="Camera feed"
+              >
+                <track kind="captions" />
+              </video>
+            </div>
+            <canvas ref={canvasRef} className="hidden" width="640" height="480" />
+          </div>
+        </CardContent>
+      </Card>
 
-                    <TabsContent value="color" className="mt-4">
-                      {result && (
-                        <div
-                          className="flex h-96 w-full items-center justify-center rounded-lg text-6xl font-bold transition-colors duration-300"
-                          style={{ backgroundColor: ANSWER_COLORS[result.answer] }}
-                        >
-                          {result.answer}
-                        </div>
-                      )}
-                    </TabsContent>
+      {/* Response Section */}
+      <Card className="ai-card">
+        <CardHeader>
+          <CardTitle className="ai-gradient-text">Response Area</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Tabs value={activeResponseMode} onValueChange={setActiveResponseMode}>
+            <TabsList className="border border-gray-700 bg-gray-800">
+              <TabsTrigger value="ctest" className="data-[state=active]:bg-gray-700">C-Test Response</TabsTrigger>
+              <TabsTrigger value="color" className="data-[state=active]:bg-gray-700">Color Mode</TabsTrigger>
+              <TabsTrigger value="vibrate" className="data-[state=active]:bg-gray-700">Vibration Mode</TabsTrigger>
+            </TabsList>
 
-                    <TabsContent value="vibrate" className="mt-4">
-                      <div className="space-y-4 rounded-lg bg-gray-800 p-4">
-                        <div className="text-center">
-                          <p className="mb-4 text-gray-300">Current vibration pattern:</p>
-                          {result && (
-                            <>
-                              <div className="mb-4 text-6xl font-bold text-blue-400">
-                                {result.answer}
-                              </div>
-                              <Button
-                                onClick={() => handleVibration(result.answer)}
-                                className="bg-blue-600 hover:bg-blue-500"
-                              >
-                                Test Vibration
-                              </Button>
-                            </>
-                          )}
-                        </div>
+            <TabsContent value="ctest">
+              {result && (
+                <div className="space-y-4 rounded-lg border border-gray-800 bg-gray-900/50 p-4">
+                  <div className="ai-gradient-text text-center text-6xl font-bold">
+                    {result.answer}
+                  </div>
+                  <div className="space-y-2 text-gray-300">
+                    <p className="font-semibold">Explanation:</p>
+                    <p>{result.explanation}</p>
+                    <div className="mt-2">
+                      <span className="font-semibold">Confidence: </span>
+                      {result.confidence}
+                      %
+                    </div>
+                  </div>
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="color">
+              {result && result.answer in ANSWER_COLORS && (
+                <div
+                  className="flex h-96 w-full items-center justify-center rounded-lg text-6xl font-bold transition-colors duration-300"
+                  style={{ backgroundColor: ANSWER_COLORS[result.answer as Answer] }}
+                >
+                  {result.answer}
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="vibrate">
+              <div className="space-y-4 rounded-lg border border-gray-800 bg-gray-900/50 p-4">
+                <div className="text-center">
+                  <p className="mb-4 text-gray-300">Current vibration pattern:</p>
+                  {result && (
+                    <>
+                      <div className="ai-gradient-text mb-4 text-6xl font-bold">
+                        {result.answer}
                       </div>
-                    </TabsContent>
-                  </Tabs>
+                      <Button
+                        onClick={() => handleVibration(result.answer)}
+                        className="ai-button"
+                      >
+                        Test Vibration
+                      </Button>
+                    </>
+                  )}
                 </div>
-              </TabsContent>
+              </div>
+            </TabsContent>
+          </Tabs>
 
-              <TabsContent value="settings">
-                <div className="space-y-4 rounded-lg bg-gray-800 p-4">
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      id="color-mode"
-                      checked={showColorMode}
-                      onCheckedChange={setShowColorMode}
-                    />
-                    <Label htmlFor="color-mode" className="text-gray-300">Enable Color Mode</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      id="vibration"
-                      checked={useVibration}
-                      onCheckedChange={setUseVibration}
-                    />
-                    <Label htmlFor="vibration" className="text-gray-300">Enable Vibration Feedback</Label>
-                  </div>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </CardContent>
-        </Card>
-      </div>
+          <div className="mt-6 space-y-4 rounded-lg border border-gray-800 bg-gray-900/50 p-4">
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="color-mode"
+                checked={showColorMode}
+                onCheckedChange={setShowColorMode}
+              />
+              <Label htmlFor="color-mode" className="text-gray-300">Enable Color Mode</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="vibration"
+                checked={useVibration}
+                onCheckedChange={setUseVibration}
+              />
+              <Label htmlFor="vibration" className="text-gray-300">Enable Vibration Feedback</Label>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

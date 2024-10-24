@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 // Renders errors or successful transactions on the screen.
 function Message({ content }: { content: string }) {
-  return <p className="mt-4 text-sm text-gray-600">{content}</p>;
+  return <p className="mt-4 text-sm text-gray-400">{content}</p>;
 }
 
 type PayPalButtonProps = {
@@ -23,37 +23,40 @@ export function PayPalButton({ amount = '100.00', description = 'Monthly Subscri
   return (
     <div className="mx-auto w-full max-w-md">
       <PayPalScriptProvider options={initialOptions}>
-        <PayPalButtons
-          style={{
-            shape: 'rect',
-            layout: 'vertical',
-          }}
-          createOrder={(data, actions) => {
-            return actions.order.create({
-              intent: 'CAPTURE',
-              purchase_units: [
-                {
-                  amount: {
-                    value: amount,
-                    currency_code: 'USD',
+        <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-4">
+          <PayPalButtons
+            style={{
+              shape: 'rect',
+              layout: 'vertical',
+              color: 'blue',
+            }}
+            createOrder={(data, actions) => {
+              return actions.order.create({
+                intent: 'CAPTURE',
+                purchase_units: [
+                  {
+                    amount: {
+                      value: amount,
+                      currency_code: 'USD',
+                    },
+                    description,
                   },
-                  description,
-                },
-              ],
-            });
-          }}
-          onApprove={async (data, actions) => {
-            if (actions.order) {
-              const order = await actions.order.capture();
-              setMessage(`Transaction completed! Order ID: ${order.id}`);
-              console.log('Capture result', order);
-            }
-          }}
-          onError={(err) => {
-            setMessage(`An error occurred: ${err.message}`);
-            console.error('PayPal error', err);
-          }}
-        />
+                ],
+              });
+            }}
+            onApprove={async (data, actions) => {
+              if (actions.order) {
+                const order = await actions.order.capture();
+                setMessage(`Transaction completed! Order ID: ${order.id}`);
+                console.log('Capture result', order);
+              }
+            }}
+            onError={(err) => {
+              setMessage(`An error occurred: ${err.message}`);
+              console.error('PayPal error', err);
+            }}
+          />
+        </div>
       </PayPalScriptProvider>
       <Message content={message} />
     </div>

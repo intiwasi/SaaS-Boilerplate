@@ -3,16 +3,16 @@
 import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
-import { ActiveLink } from '@/components/ActiveLink';
-import { LocaleSwitcher } from '@/components/LocaleSwitcher';
-import { ToggleMenuButton } from '@/components/ToggleMenuButton';
+import { ActiveLink } from '../../components/ActiveLink';
+import { LocaleSwitcher } from '../../components/LocaleSwitcher';
+import { ToggleMenuButton } from '../../components/ToggleMenuButton';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Logo } from '@/templates/Logo';
+} from '../../components/ui/dropdown-menu';
+import { Logo } from '../../templates/Logo';
 
 export const DashboardHeader = (props: {
   menu: {
@@ -28,7 +28,7 @@ export const DashboardHeader = (props: {
         </Link>
 
         <nav className="ml-3 max-lg:hidden">
-          <ul className="flex flex-row items-center gap-x-3 text-lg font-medium [&_a:hover]:opacity-100 [&_a]:opacity-75">
+          <ul className="flex flex-row items-center gap-x-3 text-lg font-medium text-gray-300">
             {props.menu.map(item => (
               <li key={item.href}>
                 <ActiveLink href={item.href}>{item.label}</ActiveLink>
@@ -39,25 +39,25 @@ export const DashboardHeader = (props: {
       </div>
 
       <div>
-        <ul className="flex items-center gap-x-1.5 [&_li:not(:last-child):hover]:opacity-100 [&_li:not(:last-child)]:opacity-60">
+        <ul className="flex items-center gap-x-1.5">
           <li>
             <div className="lg:hidden">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <ToggleMenuButton />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className="border-gray-800 bg-gray-900 text-gray-300">
                   {props.menu.map(item => (
-                    <DropdownMenuItem key={item.href} asChild>
-                      <Link href={item.href}>{item.label}</Link>
+                    <DropdownMenuItem key={item.href} className="hover:bg-gray-800">
+                      <Link href={item.href} className="w-full">
+                        {item.label}
+                      </Link>
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </li>
-
-          {/* PRO: Dark mode toggle button */}
 
           <li>
             <LocaleSwitcher />
@@ -70,6 +70,11 @@ export const DashboardHeader = (props: {
               appearance={{
                 elements: {
                   rootBox: 'px-2 py-1.5',
+                  userButtonPopoverCard: 'bg-gray-900 border-gray-800',
+                  userButtonPopoverText: 'text-gray-300',
+                  userButtonPopoverActionButtonText: 'text-gray-300',
+                  userButtonPopoverActionButtonIcon: 'text-gray-300',
+                  userButtonPopoverFooter: 'border-gray-800',
                 },
               }}
             />

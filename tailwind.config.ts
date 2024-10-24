@@ -1,5 +1,5 @@
-/* eslint-disable ts/no-require-imports */
 import type { Config } from 'tailwindcss';
+import animate from 'tailwindcss-animate';
 
 const config = {
   darkMode: ['class'],
@@ -40,6 +40,13 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        ai: {
+          blue: '#3B82F6',
+          purple: '#8B5CF6',
+          indigo: '#6366F1',
+          pink: '#EC4899',
+          rose: '#F43F5E',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -55,14 +62,23 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        'glow': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'glow': 'glow 2s ease-in-out infinite',
+      },
+      backgroundImage: {
+        'ai-gradient': 'linear-gradient(to right, var(--tw-gradient-stops))',
+        'ai-glow': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
 } satisfies Config;
 
 export default config;
