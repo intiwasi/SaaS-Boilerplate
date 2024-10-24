@@ -33,7 +33,7 @@ export const Hero = () => {
             <a
               className={buttonVariants({
                 size: 'lg',
-                className: 'bg-blue-600 hover:bg-blue-700 text-white',
+                className: 'bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white hover:opacity-90',
               })}
               href="/sign-up"
             >
@@ -44,7 +44,7 @@ export const Hero = () => {
               className={buttonVariants({
                 variant: 'outline',
                 size: 'lg',
-                className: 'border-blue-600 text-blue-600 hover:bg-blue-50',
+                className: 'border-gray-800 bg-gray-900/50 text-gray-100 backdrop-blur-sm hover:bg-gray-800',
               })}
               href="#demo"
             >

@@ -6,7 +6,7 @@ import { FeatureCard } from '../features/landing/FeatureCard';
 import { Section } from '../features/landing/Section';
 
 const FeatureIcon = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex size-12 items-center justify-center rounded-xl bg-blue-100">
+  <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-sm">
     {children}
   </div>
 );
@@ -21,11 +21,11 @@ export const Features = () => {
         title={t('section_title')}
         description={t('section_description')}
       >
-        <div className="grid grid-cols-1 gap-x-3 gap-y-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-3">
           <FeatureCard
             icon={(
               <FeatureIcon>
-                <CameraIcon className="size-6 text-blue-600" />
+                <CameraIcon className="size-6 text-blue-400" />
               </FeatureIcon>
             )}
             title={t('feature1_title')}
@@ -36,7 +36,7 @@ export const Features = () => {
           <FeatureCard
             icon={(
               <FeatureIcon>
-                <LightningBoltIcon className="size-6 text-blue-600" />
+                <LightningBoltIcon className="size-6 text-purple-400" />
               </FeatureIcon>
             )}
             title={t('feature2_title')}
@@ -47,7 +47,7 @@ export const Features = () => {
           <FeatureCard
             icon={(
               <FeatureIcon>
-                <MobileIcon className="size-6 text-blue-600" />
+                <MobileIcon className="size-6 text-indigo-400" />
               </FeatureIcon>
             )}
             title={t('feature3_title')}
@@ -58,7 +58,7 @@ export const Features = () => {
           <FeatureCard
             icon={(
               <FeatureIcon>
-                <RocketIcon className="size-6 text-blue-600" />
+                <RocketIcon className="size-6 text-blue-400" />
               </FeatureIcon>
             )}
             title={t('feature4_title')}
@@ -69,7 +69,7 @@ export const Features = () => {
           <FeatureCard
             icon={(
               <FeatureIcon>
-                <LockClosedIcon className="size-6 text-blue-600" />
+                <LockClosedIcon className="size-6 text-purple-400" />
               </FeatureIcon>
             )}
             title={t('feature5_title')}
@@ -80,7 +80,7 @@ export const Features = () => {
           <FeatureCard
             icon={(
               <FeatureIcon>
-                <UpdateIcon className="size-6 text-blue-600" />
+                <UpdateIcon className="size-6 text-indigo-400" />
               </FeatureIcon>
             )}
             title={t('feature6_title')}

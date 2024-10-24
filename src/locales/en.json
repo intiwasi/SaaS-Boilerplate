@@ -19,9 +19,6 @@
     "primary_button": "Get Started",
     "secondary_button": "Watch Demo"
   },
-  "Sponsors": {
-    "title": "Trusted By"
-  },
   "Features": {
     "section_subtitle": "Features",
     "section_title": "Study Smarter with IntiTutor",
@@ -41,10 +38,11 @@
     "button_text": "Get Started"
   },
   "PricingPlan": {
-    "free_plan_name": "Screenshot Assistant",
-    "premium_plan_name": "Pro Vision Suite",
+    "basic_plan_name": "Basic AI Analysis",
+    "premium_plan_name": "Premium AI Analysis",
+    "screenshot_plan_name": "Screenshot Assistant",
     "enterprise_plan_name": "Enterprise",
-    "free_plan_description": "Perfect for individual study sessions",
+    "basic_plan_description": "Perfect for individual study sessions",
     "premium_plan_description": "Complete real-time assistance",
     "enterprise_plan_description": "For educational institutions",
     "feature_team_member": "Unlimited Screenshots",
@@ -102,7 +100,9 @@
     "meta_title": "IntiTutor Pricing Plans",
     "meta_description": "Choose the perfect plan for your study needs",
     "title_bar": "Pricing Plans",
-    "title_bar_description": "Select the plan that best fits your study style"
+    "title_bar_description": "Select the plan that best fits your study style",
+    "title": "Unlock the Power of AI Analysis",
+    "description": "Experience next-generation hardware and software analysis powered by advanced artificial intelligence."
   },
   "HardwareAI": {
     "meta_title": "Hardware AI",
