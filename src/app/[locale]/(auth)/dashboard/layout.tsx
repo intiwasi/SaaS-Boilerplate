@@ -40,6 +40,14 @@ export default function DashboardLayout(props: { children: React.ReactNode }) {
                 href: '/dashboard/software-scan',
                 label: t('software_scan'),
               },
+              {
+                href: '/dashboard/hardware-ai',
+                label: t('hardware_ai'),
+              },
+              {
+                href: '/dashboard/software-ai',
+                label: t('software_ai'),
+              },
             ]}
           />
         </div>

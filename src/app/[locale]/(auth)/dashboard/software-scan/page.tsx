@@ -1,10 +1,11 @@
-'use client';
+use client;
 
 import { useTranslations } from 'next-intl';
 
-import { PayPalButton } from '@/components/PayPalButton';
 import { DashboardSection } from '@/features/dashboard/DashboardSection';
 import { TitleBar } from '@/features/dashboard/TitleBar';
+import Link from 'next/link';
+import { use } from 'chai';
 
 export default function SoftwareScanPage() {
   const t = useTranslations('SoftwareScan');
@@ -20,9 +21,9 @@ export default function SoftwareScanPage() {
         <div className="mx-auto max-w-2xl">
           <div className="mb-6 text-center">
             <div className="mb-6 text-xl font-bold text-primary">
-              $400
+              {/*$400
               {' '}
-              <span className="text-sm text-gray-600">/month</span>
+              <span className="text-sm text-gray-600">/month</span>*/}
             </div>
           </div>
 
@@ -49,7 +50,11 @@ export default function SoftwareScanPage() {
             </ul>
           </div>
 
-          <PayPalButton amount="400.00" description="Software Scan Service" />
+          <Link href="/dashboard/hardware-ai">
+            <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Go to Hardware AI
+            </a>
+          </Link>
         </div>
       </DashboardSection>
     </>

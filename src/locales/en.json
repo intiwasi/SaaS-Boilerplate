@@ -90,7 +90,9 @@
     "home": "Home",
     "prices": "Prices",
     "hardware_scan": "Study History",
-    "software_scan": "Practice Tests"
+    "software_scan": "Practice Tests",
+    "hardware_ai": "Hardware AI",
+    "software_ai": "Software AI"
   },
   "Dashboard": {
     "meta_title": "IntiTutor Dashboard",
@@ -101,6 +103,14 @@
     "meta_description": "Choose the perfect plan for your study needs",
     "title_bar": "Pricing Plans",
     "title_bar_description": "Select the plan that best fits your study style"
+  },
+  "HardwareAI": {
+    "meta_title": "Hardware AI",
+    "meta_description": "Use device to capture screen",
+    "title_bar": "Hardware AI",
+    "title_bar_description": "Study smarter",
+    "section_title": "Study Analytics",
+    "section_description": "Review your study patterns and progress over time"
   },
   "HardwareScan": {
     "meta_title": "Study History",
