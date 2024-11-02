@@ -29,6 +29,12 @@
     "feature4_title": "Smart Capture",
     "feature5_title": "Secure Connection",
     "feature6_title": "24/7 Support",
+    "feature1_description": "Placeholder Feature 1 Description",
+    "feature2_description": "Placeholder Feature 2 Description",
+    "feature3_description": "Placeholder Feature 3 Description",
+    "feature4_description": "Placeholder Feature 4 Description",
+    "feature5_description": "Placeholder Feature 5 Description",
+    "feature6_description": "Placeholder Feature 6 Description",
     "feature_description": "Experience the future of studying with our advanced AI vision technology that understands and explains your practice tests in real-time."
   },
   "Pricing": {
@@ -52,9 +58,21 @@
     "feature_email_support": "24/7 Support",
     "plan_interval_month": "month",
     "plan_interval_year": "year",
-    "next_renew_date": "Your subscription renews on {date}"
+    "next_renew_date": "Your subscription renews on {date}",
+    "section_subtitle": "Our Pricing Plans",
+    "section_title": "Choose Your Plan",
+    "section_description": "Select the perfect plan to enhance your study sessions with AI-powered assistance.",
+    "screenshot_plan_description": "Get real-time assistance with your practice tests.",
+    "screenshot_features": [
+      "Real-time analysis",
+      "Instant explanations",
+      "Mobile app access"
+    ],
+    "price_per_month": "per month"
   },
   "FAQ": {
+    "section_title": "Frequently Asked Questions",
+    "section_description": "Find answers to your questions about IntiTutor.",
     "question": "How does IntiTutor's AI vision technology work?",
     "answer": "IntiTutor uses advanced AI vision technology to analyze your practice tests in real-time. Simply take a screenshot or connect your phone to your computer using our adapter, and our AI will instantly provide answers and detailed explanations on your mobile device."
   },

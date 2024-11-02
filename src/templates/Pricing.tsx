@@ -7,6 +7,28 @@ import { Section } from '../features/landing/Section';
 export const Pricing = () => {
   const t = useTranslations('PricingPlan');
 
+  // Get features as individual strings and create arrays
+  const screenshotFeatures = [
+    t('feature_team_member'),
+    t('feature_website'),
+    t('feature_storage'),
+  ];
+
+  const proFeatures = [
+    t('feature_team_member'),
+    t('feature_website'),
+    t('feature_storage'),
+    t('feature_transfer'),
+  ];
+
+  const enterpriseFeatures = [
+    t('feature_team_member'),
+    t('feature_website'),
+    t('feature_storage'),
+    t('feature_transfer'),
+    t('feature_email_support'),
+  ];
+
   return (
     <Section
       id="pricing"
@@ -31,7 +53,7 @@ export const Pricing = () => {
             </div>
             <p className="mb-6 text-gray-300">{t('screenshot_plan_description')}</p>
             <ul className="mb-8 space-y-4">
-              {t('screenshot_features').map((feature: string, index: number) => (
+              {screenshotFeatures.map((feature, index) => (
                 <li key={index} className="flex items-center text-gray-300">
                   <svg className="mr-3 size-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -46,7 +68,7 @@ export const Pricing = () => {
                 className: 'w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:opacity-90 transition-opacity',
               })}
             >
-              {t('start_button')}
+              {t('button_text')}
             </Link>
           </div>
         </div>
@@ -58,14 +80,14 @@ export const Pricing = () => {
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           <div className="relative">
-            <h3 className="ai-gradient-text mb-4 text-xl font-semibold">{t('pro_plan_name')}</h3>
+            <h3 className="ai-gradient-text mb-4 text-xl font-semibold">{t('premium_plan_name')}</h3>
             <div className="mb-4">
               <span className="text-3xl font-bold text-gray-100">$400</span>
               <span className="text-gray-400">{t('price_per_month')}</span>
             </div>
-            <p className="mb-6 text-gray-300">{t('pro_plan_description')}</p>
+            <p className="mb-6 text-gray-300">{t('premium_plan_description')}</p>
             <ul className="mb-8 space-y-4">
-              {t('pro_features').map((feature: string, index: number) => (
+              {proFeatures.map((feature, index) => (
                 <li key={index} className="flex items-center text-gray-300">
                   <svg className="mr-3 size-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -80,7 +102,7 @@ export const Pricing = () => {
                 className: 'w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:opacity-90 transition-opacity',
               })}
             >
-              {t('start_button')}
+              {t('button_text')}
             </Link>
           </div>
         </div>
@@ -96,7 +118,7 @@ export const Pricing = () => {
             </div>
             <p className="mb-6 text-gray-300">{t('enterprise_plan_description')}</p>
             <ul className="mb-8 space-y-4">
-              {t('enterprise_features').map((feature: string, index: number) => (
+              {enterpriseFeatures.map((feature, index) => (
                 <li key={index} className="flex items-center text-gray-300">
                   <svg className="mr-3 size-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -111,7 +133,7 @@ export const Pricing = () => {
                 className: 'w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:opacity-90 transition-opacity',
               })}
             >
-              {t('start_button')}
+              {t('button_text')}
             </Link>
           </div>
         </div>
